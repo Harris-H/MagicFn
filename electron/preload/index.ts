@@ -1,4 +1,4 @@
-import { ipcRenderer, contextBridge } from 'electron'
+import { ipcRenderer, contextBridge, shell } from 'electron'
 
 // --------- Expose some API to the Renderer process ---------
 contextBridge.exposeInMainWorld('ipcRenderer', {
@@ -21,6 +21,16 @@ contextBridge.exposeInMainWorld('ipcRenderer', {
 
   // You can expose other APTs you need here.
   // ...
+})
+const is_prod_env = process.env.NODE_ENV === 'production'
+contextBridge.exposeInMainWorld('electronEnv', {
+  BASE_URL: process.env.BASE_URL,
+  IS_PROD_ENV: is_prod_env
+});
+import {Form} from '../../src/types/Dashboard'
+contextBridge.exposeInMainWorld('electronAPI', {
+  OpenFileDialog: (form:Form) => ipcRenderer.invoke('dialog:open-file-dialog',form),
+  showItemInFolder: (path:string) => ipcRenderer.send('show-item-in-folder', path),
 })
 
 // --------- Preload scripts loading ---------

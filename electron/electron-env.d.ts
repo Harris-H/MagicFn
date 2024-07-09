@@ -19,5 +19,8 @@ declare namespace NodeJS {
     APP_ROOT: string
     /** /dist/ or /public/ */
     VITE_PUBLIC: string
+    IS_PROD_ENV: string
   }
+  // 在一个 .d.ts 文件中，例如 electron-env.d.ts
 }
+

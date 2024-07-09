@@ -2,6 +2,9 @@
   "compilerOptions": {
     "target": "ESNext",
     "useDefineForClassFields": true,
+    "types": [
+      "unplugin-icons/types/vue",
+    ],
     "module": "ESNext",
     "moduleResolution": "Node",
     "strict": true,
@@ -13,7 +16,7 @@
     "skipLibCheck": true,
     "noEmit": true
   },
-  "include": ["src"],
+  "include": ["src","src/**/*.d.ts"],
   "references": [
     { "path": "./tsconfig.node.json" }
   ]

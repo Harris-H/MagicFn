@@ -1,6 +1,6 @@
 {
   "name": "electron-vue-vite",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "main": "dist-electron/main/index.js",
   "description": "神奇的文件名称管理工具",
   "author": "Herio <haohe@buaa.edu.cn>",
@@ -27,6 +27,7 @@
   },
   "devDependencies": {
     "@iconify/json": "^2.2.225",
+    "@intlify/unplugin-vue-i18n": "^4.0.0",
     "@vitejs/plugin-vue": "^5.0.4",
     "cross-env": "^7.0.3",
     "electron": "^29.1.1",
@@ -44,7 +45,9 @@
   },
   "dependencies": {
     "@element-plus/icons-vue": "^2.3.1",
+    "@vueuse/core": "^10.11.0",
     "element-plus": "^2.7.6",
+    "vue-i18n": "^9.13.1",
     "vue-router": "^4.4.0"
   }
 }

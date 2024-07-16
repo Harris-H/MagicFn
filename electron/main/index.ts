@@ -1,4 +1,4 @@
-import { app, BrowserWindow, shell, ipcMain, dialog, OpenDialogOptions } from 'electron'
+import { nativeTheme, app, BrowserWindow, shell, ipcMain, dialog, OpenDialogOptions } from 'electron'
 import { createRequire } from 'node:module'
 import { fileURLToPath } from 'node:url'
 import path from 'node:path'
@@ -194,9 +194,16 @@ function handleOpenFileDialog(event: Electron.IpcMainEvent, form: Form): Promise
 function FunShowInFolder(event: Electron.IpcMainEvent, path: string): void {
   shell.showItemInFolder(path);
 }
-
+function FuncSetTheme(event: Electron.IpcMainEvent, theme: 'light' | 'dark' | 'system') {
+  if (['light', 'dark', 'system'].includes(theme)) {
+    nativeTheme.themeSource = theme;
+  } else {
+    console.error(`Unsupported theme: ${theme}`);
+  }
+}
 app.whenReady().then(() => {
   ipcMain.handle('dialog:open-file-dialog', handleOpenFileDialog)
+  ipcMain.handle('dark-mode:set-theme', FuncSetTheme)
   ipcMain.on('show-item-in-folder', FunShowInFolder)
   createWindow()
 })

@@ -1,0 +1,47 @@
+{
+  "about": {
+    "lang": {
+      "en_US": "English",
+      "zh_CN": "Chinese"
+    },
+    "langTittle": "Language Settings",
+    "theme": {
+      "dark": "dark",
+      "light": "light",
+      "system": "system"
+    },
+    "themeTittle": "Theme Mode",
+    "title": "Setting"
+  },
+  "button": {
+    "reset": "reset",
+    "submit": "submit"
+  },
+  "home": {
+    "home": "Home",
+    "modify": {
+      "NotRecursion": "Non-recursive modification",
+      "Recursion": "Recursive modification",
+      "cancel": "cancel selection",
+      "checkError": "Form validation failed, please check your input!",
+      "error": "fail to edit!",
+      "file": "document",
+      "finish": "Modification completed!",
+      "folder": "folder",
+      "method": "method：",
+      "method_ph": "select how to modify",
+      "prefix": "prefix：",
+      "prefix_placeholder": "Please enter prefix",
+      "suffix": "suffix：",
+      "suffix_placeholder": "Please enter suffix",
+      "title": "File Name Modify",
+      "type": "file type：",
+      "type_placeholder": "select or enter new file type",
+      "unknown": "unknown mistake!",
+      "validateError": "Each entered variable must begin with a dot (.)",
+      "viewResults": "View Results"
+    },
+    "setting": "Setting"
+  },
+  "please-choose": "Please Choose"
+}

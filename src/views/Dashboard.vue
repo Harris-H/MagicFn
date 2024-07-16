@@ -1,18 +1,18 @@
 <template>
     <div>
-        <h1>文件名称修改</h1>
+        <h1>{{ $t('home.modify.title') }}</h1>
         <el-form ref="FormRef" :model="form" :rules="rules" status-icon label-width="auto" style="max-width: 600px">            
-            <el-form-item label="前缀名称：" prop="prefix" class="inputItem">
-                <el-input v-model="form.prefix"  placeholder="请输入前缀" clearable></el-input>
+            <el-form-item :label="$t('home.modify.prefix')" prop="prefix" class="inputItem">
+                <el-input v-model="form.prefix"  :placeholder="$t('home.modify.prefix_placeholder')" clearable></el-input>
             </el-form-item>
-            <el-form-item label="后缀名称：" prop="suffix" class="inputItem">
-                 <el-input v-model="form.suffix" placeholder="请输入后缀" clearable></el-input>
+            <el-form-item :label="$t('home.modify.suffix')" prop="suffix" class="inputItem">
+                 <el-input v-model="form.suffix" :placeholder="$t('home.modify.suffix_placeholder')" clearable></el-input>
             </el-form-item>
-            <el-form-item label="文件类型：" prop="selectedFileTypes" class="inputItem">
+            <el-form-item :label="$t('home.modify.type')" prop="selectedFileTypes" class="inputItem">
                 <el-select 
                     v-model="form.selectedFileTypes"
                     multiple 
-                    placeholder="请选择或输入新的文件类型" 
+                    :placeholder="$t('home.modify.type_placeholder')" 
                     placement="right-end"
                     clearable
                     allow-create 
@@ -27,8 +27,8 @@
                     </el-option>
                 </el-select>
             </el-form-item>
-            <el-form-item label="修改方式：" prop="method" class="inputItem">
-            <el-cascader :options="options" v-model="form.method" :show-all-levels="false" :props="props" clearable placeholder="请选择修改方式"/>   
+            <el-form-item :label="$t('home.modify.method')" prop="method" class="inputItem">
+            <el-cascader :options="options" v-model="form.method" :show-all-levels="false" :props="props" clearable :placeholder="$t('home.modify.method_ph')"/>   
             </el-form-item>
             <!-- <el-form-item v-model="form.method">
             <el-radio-group v-model="form.method">
@@ -38,9 +38,9 @@
             </el-form-item> -->
             <el-form-item class="inputItem">
                 <div class="centered-items">
-                <el-button type="primary" id="btn" @click="openFileDialog(FormRef)">确定</el-button>
-                <el-button @click="resetForm(FormRef)">重置</el-button>
-                <el-button type="success" v-if="isOperationSuccessful" @click="viewResults">查看结果</el-button>
+                <el-button type="primary" id="btn" @click="openFileDialog(FormRef)">{{ $t('button.submit') }}</el-button>
+                <el-button @click="resetForm(FormRef)">{{ $t('button.reset') }}</el-button>
+                <el-button type="success" v-if="isOperationSuccessful" @click="viewResults">{{ $t('home.modify.viewResults') }}</el-button>
                 </div>  
             </el-form-item>
         </el-form>
@@ -50,7 +50,9 @@
 <script setup lang="ts">
 // do not use same name with ref
 import { FormInstance } from 'element-plus';
-import{ type Form} from '../types/Dashboard'
+import type { Form} from '../types/Dashboard'
+import i18n from '../locales';
+const { t } = i18n.global
 enum OperationResult {
   Success = 0,
   Failure = 1,
@@ -78,14 +80,14 @@ const fileTypeOptions = [
 // 自定义校验函数，确保输入的每个变量都以点开头
 function validateFileType(rule:any, value:any, callback:any) {
     if (!value.every((v: string) => v.startsWith('.'))) {
-        callback(new Error('每个输入的变量都必须以点（.）开头'));
+        callback(new Error(t('home.modify.validateError')));
     } else {
         callback();
     }
 }
 const rules = {
     method: [
-        { required: true, message: '请选择修改方式', trigger: 'change' }
+        { required: true, message: t('home.modify.method_ph'), trigger: 'change' }
     ],
     selectedFileTypes: [
         { validator: validateFileType, trigger: 'change' }
@@ -99,19 +101,19 @@ const props = {
 const options = [
     {
         value: 'file',
-        label: '文件',
+        label: t('home.modify.file'),
     },
     {
         value: 'folder',
-        label: '文件夹',
+        label: t('home.modify.folder'),
         children: [
             {
                 value: 'Recursion',
-                label: '递归修改',
+                label: t('home.modify.Recursion'),
             },
             {
                 value: 'NotRecursion',
-                label: '非递归修改',
+                label: t('home.modify.NotRecursion'),
             }
         ]
     }
@@ -134,7 +136,7 @@ async function openFileDialog(formEl: FormInstance | undefined) {
         case OperationResult.Success:
           ElMessage({
             showClose: true,
-            message: '修改完成！',
+            message: t('home.modify.finish'),
             type: 'success',
           });
           isOperationSuccessful.value = true;
@@ -143,21 +145,21 @@ async function openFileDialog(formEl: FormInstance | undefined) {
         case OperationResult.Failure:
         ElMessage({
             showClose: true,
-            message: '修改失败！',
+            message: t('home.modify.error'),
             type: 'error',
           });
           break;
         case OperationResult.Cancelled:
             ElMessage({
                 showClose: true,
-                message: '取消选择',
+                message: t('home.modify.cancel'),
                 type: 'warning',
             });
           break;
         default:
             ElMessage({
                 showClose: true,
-                message: '未知错误！',
+                message: t('home.modify.unknown'),
                 type: 'error',
             });
       }
@@ -165,7 +167,7 @@ async function openFileDialog(formEl: FormInstance | undefined) {
             // 如果表单验证失败，可以在这里处理，例如显示一个错误消息
             ElMessage({
             showClose: true,
-            message: '表单验证失败，请检查输入！',
+            message: t('home.modify.checkError'),
             type: 'error',
           });
     }
@@ -174,6 +176,7 @@ async function openFileDialog(formEl: FormInstance | undefined) {
 const resetForm = (formEl: FormInstance | undefined) => {
   if (!formEl) return
   formEl.resetFields()
+  isOperationSuccessful.value = false;
 }
 </script>
 

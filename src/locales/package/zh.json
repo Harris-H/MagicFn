@@ -1,0 +1,47 @@
+{
+  "about": {
+    "lang": {
+      "en_US": "English",
+      "zh_CN": "中文"
+    },
+    "langTittle": "语言设置",
+    "theme": {
+      "dark": "深色",
+      "light": "浅色",
+      "system": "系统"
+    },
+    "themeTittle": "主题模式",
+    "title": "设置"
+  },
+  "button": {
+    "reset": "重置",
+    "submit": "确定"
+  },
+  "home": {
+    "home": "主页",
+    "modify": {
+      "NotRecursion": "非递归修改",
+      "Recursion": "递归修改",
+      "cancel": "取消选择",
+      "checkError": "表单验证失败，请检查输入！",
+      "error": "修改失败！",
+      "file": "文件",
+      "finish": "修改完成！",
+      "folder": "文件夹",
+      "method": "修改方式：",
+      "method_ph": "请选择修改方式",
+      "prefix": "前缀名称：",
+      "prefix_placeholder": "请输入前缀",
+      "suffix": "后缀名称：",
+      "suffix_placeholder": "请输入后缀",
+      "title": "文件名称修改",
+      "type": "文件类型：",
+      "type_placeholder": "请选择或输入新的文件类型",
+      "unknown": "未知错误！",
+      "validateError": "每个输入的变量都必须以点（.）开头",
+      "viewResults": "查看结果"
+    },
+    "setting": "设置"
+  },
+  "please-choose": "请选择"
+}

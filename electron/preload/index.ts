@@ -31,6 +31,7 @@ import {Form} from '../../src/types/Dashboard'
 contextBridge.exposeInMainWorld('electronAPI', {
   OpenFileDialog: (form:Form) => ipcRenderer.invoke('dialog:open-file-dialog',form),
   showItemInFolder: (path:string) => ipcRenderer.send('show-item-in-folder', path),
+  setTheme: (theme: 'light' | 'dark' | 'system') => ipcRenderer.invoke('dark-mode:set-theme', theme),
 })
 
 // --------- Preload scripts loading ---------

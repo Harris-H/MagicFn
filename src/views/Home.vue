@@ -11,7 +11,7 @@
         <el-menu-item index="/dashboard">
           <div class="IconItem"><el-icon><i-ep-data-board /></el-icon></div>
           <div class="MenuItemName">
-          <span>Dashboard</span>
+          <span>{{ $t('home.home') }}</span>
         </div>
         </el-menu-item>
         <!-- <el-menu-item index="/about">
@@ -35,7 +35,7 @@
             <el-icon><i-ep-setting /></el-icon>
           </div>
           <div class="MenuItemName">
-          <span>About</span>
+          <span>{{ $t('home.setting') }}</span>
           </div>
         </el-menu-item>
       </el-menu>
@@ -91,7 +91,7 @@
   min-width: 56px;
   flex-shrink: 0;
   display: inline-flex;
-  color: rgb(0, 0, 0);
+  /* color: rgb(0, 0, 0); */
   margin-left: 6px;
 }
 .MenuItemName{

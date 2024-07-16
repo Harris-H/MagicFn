@@ -9,5 +9,28 @@
       ],
       "url": "https://json.schemastore.org/electron-builder"
     }
-  ]
+  ],
+  "i18n-ally.localesPaths": [
+    "src/locales/package",
+    "release/0.0.2/win-unpacked/locales",
+    "release/0.0.1/win-unpacked/locales"
+  ],
+  "i18n-ally.sourceLanguage": "zh", // 翻译源语言
+  // "i18n-ally.displayLanguage": "zh", //显示语言， 这里也可以设置显示英文为en
+  "i18n-ally.sortKeys": true,
+  "i18n-ally.keepFulfilled": true,
+  "i18n-ally.namespace": true,
+  "i18n-ally.extract.keygenStyle": "camelCase", // 翻译字段命名样式采用驼峰
+  "i18n-ally.enabledParsers": [
+    "json"
+  ],
+  // "i18n-ally.enabledFrameworks": ["vue"],
+  "i18n-ally.keystyle": "nested",
+  "i18n-ally.extract.autoDetect": false, // 翻译文件可允许的格式，默认json
+  "i18n-ally.extract.parsers.html": {
+      "attributes": ["text", "title", "alt", "placeholder", "label", "aria-label", "content", "empty-text", "prev-text", "next-text", "confirmText", "range-separator", "start-placeholder", "end-placeholder"],
+      "ignoredTags": ["script", "style","meta"],
+      "vBind": true,
+      "inlineText": true
+  },
 }

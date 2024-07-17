@@ -1,17 +1,22 @@
 {
   "about": {
+    "cancel": "Cancel",
+    "confirm": "confirm",
     "lang": {
       "en_US": "English",
       "zh_CN": "Chinese"
     },
     "langTittle": "Language Settings",
+    "quit": "Quit",
+    "quitMessage": "Are you sure you want to exit?",
     "theme": {
       "dark": "dark",
       "light": "light",
       "system": "system"
     },
     "themeTittle": "Theme Mode",
-    "title": "Setting"
+    "title": "Setting",
+    "waring": "warn"
   },
   "button": {
     "reset": "reset",

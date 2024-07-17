@@ -5,7 +5,6 @@
     <el-aside class="the-menu">
       <el-menu
         default-active="/dashboard"
-        class="el-menu-vertical-demo"
         router
         >
         <el-menu-item index="/dashboard">
@@ -59,7 +58,8 @@
     overflow: hidden;
 }
 .layout__left {
-    flex: 1 0 200px;
+    background-color: rgb(245, 245, 245);
+    flex: 0 0 250px;
     display: flex;
     height: 100%;
     width: 100%;
@@ -74,8 +74,11 @@
     overflow: hidden;
     border-right: 1px solid var(--divider-color);
 }
+.el-menu {
+  background-color: inherit;
+}
 .layout__left .the-menu {
-    flex: 1 1 80%;
+    width: 100%;
     overflow-y: auto;
     margin-bottom: 0;
     padding-top: 4px;
@@ -85,7 +88,7 @@
   width: 100%;
 }
 .main-content {
-  flex-grow: 1; /* 主内容区域占据剩余空间 */
+  flex: 4; /* 主内容区域占据3份 */
 }
 .IconItem{
   min-width: 56px;

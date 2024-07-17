@@ -201,10 +201,14 @@ function FuncSetTheme(event: Electron.IpcMainEvent, theme: 'light' | 'dark' | 's
     console.error(`Unsupported theme: ${theme}`);
   }
 }
+function FunQuit(): void {
+  app.quit(); // 退出应用程序
+}
 app.whenReady().then(() => {
   ipcMain.handle('dialog:open-file-dialog', handleOpenFileDialog)
   ipcMain.handle('dark-mode:set-theme', FuncSetTheme)
   ipcMain.on('show-item-in-folder', FunShowInFolder)
+  ipcMain.on('quit-app',FunQuit)
   createWindow()
 })
 

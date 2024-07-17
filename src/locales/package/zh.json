@@ -1,17 +1,22 @@
 {
   "about": {
+    "cancel": "取消",
+    "confirm": "确认",
     "lang": {
       "en_US": "English",
       "zh_CN": "中文"
     },
     "langTittle": "语言设置",
+    "quit": "退出",
+    "quitMessage": "你确定要退出吗？",
     "theme": {
       "dark": "深色",
       "light": "浅色",
       "system": "系统"
     },
     "themeTittle": "主题模式",
-    "title": "设置"
+    "title": "设置",
+    "waring": "警告"
   },
   "button": {
     "reset": "重置",

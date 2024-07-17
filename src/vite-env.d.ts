@@ -16,5 +16,6 @@ interface Window {
     OpenFileDialog: (form: import('./types/Dashboard').Form) => Promise<import('../electron/main/index').FileSelectionResult>
     showItemInFolder: (path: string) => void
     setTheme: (mode: 'light' | 'dark' | 'system') => Promise<void>
+    quit: () => void
   }
 }

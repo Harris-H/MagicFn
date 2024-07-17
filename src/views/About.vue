@@ -32,7 +32,21 @@
             </div>
           </el-col>
         </el-row>
-    </div>
+        <div class="hover-button" @click="exitApp" role="button">
+        <el-row align="middle" justify="space-around">
+          <el-col :span="8">
+            <div style="text-align: left;">
+              {{ $t('about.quit') }} 
+            </div>
+          </el-col>
+          <el-col :span="16">
+            <div style="text-align: right;">
+              <el-icon><i-ep-arrow-right-bold/></el-icon>
+            </div>
+          </el-col>
+        </el-row>
+        </div>
+      </div>
 </template>
 
 <script setup lang="ts">
@@ -55,8 +69,31 @@ const changeModel = (mode: any) => {
 // 添加切换语言的方法
 const changeLanguage = (value: string) => {
   i18n.locale.value = value;
+};
+const exitApp = () => {
+  ElMessageBox.confirm(
+    i18n.t('about.quitMessage'),
+    i18n.t('about.waring'),
+    {
+      confirmButtonText: i18n.t('about.confirm'),
+      cancelButtonText: i18n.t('about.cancel'),
+      type: 'warning',
+    }
+  ).then(() => {
+    window.electronAPI.quit(); // 关闭应用
+  }).catch(() => {});
 };  
 </script>
 
 <style scoped>
+.hover-button {
+  cursor: pointer;
+  margin-top: 20px;
+  padding-top: 10px; /* 上边距 */
+  padding-bottom: 10px; /* 下边距 */
+  transition: background-color 0.3s ease;
+}
+.hover-button:hover {
+  background-color: #f5f5f5; /* 灰色背景 */
+}
 </style>

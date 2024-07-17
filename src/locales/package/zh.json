@@ -7,6 +7,7 @@
       "zh_CN": "中文"
     },
     "langTittle": "语言设置",
+    "openDevTools": "打开开发者工具",
     "quit": "退出",
     "quitMessage": "你确定要退出吗？",
     "theme": {
@@ -16,6 +17,7 @@
     },
     "themeTittle": "主题模式",
     "title": "设置",
+    "version": "MagicFn 版本",
     "waring": "警告"
   },
   "button": {
@@ -23,7 +25,7 @@
     "submit": "确定"
   },
   "home": {
-    "home": "主页",
+    "home": "主 页",
     "modify": {
       "NotRecursion": "非递归修改",
       "Recursion": "递归修改",
@@ -46,7 +48,7 @@
       "validateError": "每个输入的变量都必须以点（.）开头",
       "viewResults": "查看结果"
     },
-    "setting": "设置"
+    "setting": "设 置"
   },
   "please-choose": "请选择"
 }

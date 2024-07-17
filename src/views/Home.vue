@@ -58,8 +58,8 @@
     overflow: hidden;
 }
 .layout__left {
-    background-color: rgb(245, 245, 245);
-    flex: 0 0 250px;
+    background-color: var(--layout-left-bg-color);
+    flex: 0 0 200px;
     display: flex;
     height: 100%;
     width: 100%;
@@ -76,6 +76,7 @@
 }
 .el-menu {
   background-color: inherit;
+  border-right: none;
 }
 .layout__left .the-menu {
     width: 100%;
@@ -98,6 +99,11 @@
   margin-left: 6px;
 }
 .MenuItemName{
+  margin-left: -35px;
+  flex: 1 1 auto;
   text-align: center;
+  font-weight: 700;
+  line-height: 1.5;
+  font-size: 16px; /* 调整字体大小为16px */
 }
 </style>

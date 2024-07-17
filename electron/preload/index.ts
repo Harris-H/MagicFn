@@ -25,7 +25,8 @@ contextBridge.exposeInMainWorld('ipcRenderer', {
 const is_prod_env = process.env.NODE_ENV === 'production'
 contextBridge.exposeInMainWorld('electronEnv', {
   BASE_URL: process.env.BASE_URL,
-  IS_PROD_ENV: is_prod_env
+  IS_PROD_ENV: is_prod_env,
+  VERSION: process.env.VERSION
 });
 import {Form} from '../../src/types/Dashboard'
 contextBridge.exposeInMainWorld('electronAPI', {
@@ -33,6 +34,7 @@ contextBridge.exposeInMainWorld('electronAPI', {
   showItemInFolder: (path:string) => ipcRenderer.send('show-item-in-folder', path),
   setTheme: (theme: 'light' | 'dark' | 'system') => ipcRenderer.invoke('dark-mode:set-theme', theme),
   quit: () => ipcRenderer.send('quit-app'),
+  openDevTools: ()  => ipcRenderer.send('open-dev-tools'),
 })
 
 // --------- Preload scripts loading ---------

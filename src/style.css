@@ -2,11 +2,10 @@
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
   background-color: #242424;
-
+  --divider-color: rgba(0, 0, 0, 0.06);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -78,6 +77,7 @@ code {
   :root {
     color: #213547;
     background-color: #ffffff;
+    --layout-left-bg-color: rgb(245, 245, 245);
   }
   a:hover {
     color: #747bff;
@@ -87,5 +87,11 @@ code {
   }
   code {
     background-color: #f9f9f9;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+      --layout-left-bg-color: rgb(46, 48, 61); /* 深色主题背景色 */
   }
 }

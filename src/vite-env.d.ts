@@ -10,12 +10,14 @@ interface Window {
   ipcRenderer: import('electron').IpcRenderer
   electronEnv: {
     BASE_URL: string,
-    IS_PROD_ENV: boolean
+    IS_PROD_ENV: boolean,
+    VERSION: string
   }
   electronAPI: {
     OpenFileDialog: (form: import('./types/Dashboard').Form) => Promise<import('../electron/main/index').FileSelectionResult>
     showItemInFolder: (path: string) => void
     setTheme: (mode: 'light' | 'dark' | 'system') => Promise<void>
     quit: () => void
+    openDevTools: () => void
   }
 }

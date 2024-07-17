@@ -1,4 +1,4 @@
-import { nativeTheme, app, BrowserWindow, shell, ipcMain, dialog, OpenDialogOptions } from 'electron'
+import { nativeTheme, app, BrowserWindow, shell, ipcMain, dialog, OpenDialogOptions, Menu } from 'electron'
 import { createRequire } from 'node:module'
 import { fileURLToPath } from 'node:url'
 import path from 'node:path'
@@ -19,6 +19,10 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url))
 // │ └── index.html    > Electron-Renderer
 //
 process.env.APP_ROOT = path.join(__dirname, '../..')
+// 读取 package.json 中的版本信息
+const packageJsonPath = path.join(process.env.APP_ROOT, 'package.json');
+const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, 'utf8'));
+process.env.VERSION = packageJson.version;
 
 export const MAIN_DIST = path.join(process.env.APP_ROOT, 'dist-electron')
 export const RENDERER_DIST = path.join(process.env.APP_ROOT, 'dist')
@@ -44,6 +48,7 @@ const preload = path.join(__dirname, '../preload/index.mjs')
 const indexHtml = path.join(RENDERER_DIST, 'index.html')
 
 async function createWindow() {
+  Menu.setApplicationMenu(null)
   win = new BrowserWindow({
     title: 'Main window',
     icon: path.join(process.env.VITE_PUBLIC, 'icon.png'),
@@ -209,6 +214,7 @@ app.whenReady().then(() => {
   ipcMain.handle('dark-mode:set-theme', FuncSetTheme)
   ipcMain.on('show-item-in-folder', FunShowInFolder)
   ipcMain.on('quit-app',FunQuit)
+  ipcMain.on('open-dev-tools', () => {win.webContents.openDevTools()})
   createWindow()
 })
 

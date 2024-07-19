@@ -110,38 +110,38 @@ async function openFileDialog(formEl: FormInstance | undefined) {
     formEl.validate(async (valid: boolean) => {
     if (valid) {
         const rawForm = toRaw(form);
-        const result:FileSelectionResult = await window.electronAPI.OpenFileDialog(rawForm);
-        switch (result.status) {
-        case OperationResult.Success:
-          ElMessage({
-            showClose: true,
-            message: t('home.modify.finish'),
-            type: 'success',
-          });
-          isOperationSuccessful.value = true;
-          selectedPath.value = result.path; // 将路径赋值给selectedPath
-          break;
-        case OperationResult.Failure:
-        ElMessage({
-            showClose: true,
-            message: t('home.modify.error'),
-            type: 'error',
-          });
-          break;
-        case OperationResult.Cancelled:
-            ElMessage({
-                showClose: true,
-                message: t('home.modify.cancel'),
-                type: 'warning',
-            });
-          break;
-        default:
-            ElMessage({
-                showClose: true,
-                message: t('home.modify.unknown'),
-                type: 'error',
-            });
-      }
+    //     const result:FileSelectionResult = await window.electronAPI.OpenFileDialog(rawForm);
+    //     switch (result.status) {
+    //     case OperationResult.Success:
+    //       ElMessage({
+    //         showClose: true,
+    //         message: t('home.modify.finish'),
+    //         type: 'success',
+    //       });
+    //       isOperationSuccessful.value = true;
+    //       selectedPath.value = result.path; // 将路径赋值给selectedPath
+    //       break;
+    //     case OperationResult.Failure:
+    //     ElMessage({
+    //         showClose: true,
+    //         message: t('home.modify.error'),
+    //         type: 'error',
+    //       });
+    //       break;
+    //     case OperationResult.Cancelled:
+    //         ElMessage({
+    //             showClose: true,
+    //             message: t('home.modify.cancel'),
+    //             type: 'warning',
+    //         });
+    //       break;
+    //     default:
+    //         ElMessage({
+    //             showClose: true,
+    //             message: t('home.modify.unknown'),
+    //             type: 'error',
+    //         });
+    //   }
     } else {
             // 如果表单验证失败，可以在这里处理，例如显示一个错误消息
             ElMessage({

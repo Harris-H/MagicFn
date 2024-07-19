@@ -3,6 +3,7 @@ import Home from '../views/Home.vue'
 import HelloWorld from '../views/HelloWorld.vue'
 import Dashboard from '../views/Dashboard.vue'
 import About from '../views/About.vue'
+import Suffix from '../views/Suffix.vue'
 const routes = [
   {
     path: '/',
@@ -13,6 +14,11 @@ const routes = [
         path: 'dashboard',
         name: 'Dashboard',
         component: Dashboard, // 默认视图
+      },
+      {
+        path: 'suffix',
+        name: 'Suffix',
+        component: Suffix,
       },
       {
         path: 'about',

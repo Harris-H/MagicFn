@@ -13,6 +13,14 @@
           <span>{{ $t('home.home') }}</span>
         </div>
         </el-menu-item>
+        <el-menu-item index="/suffix">
+          <div class="IconItem">
+          <el-icon><i-ep-menu /></el-icon>
+        </div>
+        <div class="MenuItemName">
+          <span>文件类型</span>
+        </div>
+        </el-menu-item>
         <!-- <el-menu-item index="/about">
           <div class="IconItem">
           <el-icon><i-ep-home-filled /></el-icon>

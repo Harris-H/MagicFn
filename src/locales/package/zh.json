@@ -50,5 +50,11 @@
     },
     "setting": "设 置"
   },
-  "please-choose": "请选择"
+  "please-choose": "请选择",
+  "suffix": {
+    "FileType": "文件类型",
+    "type": {
+      "ph": "请输入类型(.txt)等"
+    }
+  }
 }

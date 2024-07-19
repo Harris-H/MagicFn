@@ -50,5 +50,11 @@
     },
     "setting": "Setting"
   },
-  "please-choose": "Please Choose"
+  "please-choose": "Please Choose",
+  "suffix": {
+    "FileType": "",
+    "type": {
+      "ph": ""
+    }
+  }
 }

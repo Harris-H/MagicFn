@@ -30,7 +30,7 @@
     "@intlify/unplugin-vue-i18n": "^4.0.0",
     "@vitejs/plugin-vue": "^5.0.4",
     "cross-env": "^7.0.3",
-    "electron": "^29.1.1",
+    "electron": "^31.3.1",
     "electron-builder": "^24.13.3",
     "electron-icon-builder": "^2.0.1",
     "typescript": "^5.4.2",

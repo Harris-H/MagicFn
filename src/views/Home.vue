@@ -2,6 +2,11 @@
   <div class="layout">
   <el-container>
     <div class="layout__left">
+            <!-- 添加 Logo 区域 -->
+            <div class="app-logo">
+        <img src="/icon.svg" alt="Logo" class="logo-image">
+        <span class="logo-text">File Helper</span>
+      </div>
     <el-aside class="the-menu">
       <el-menu
         default-active="/dashboard"
@@ -59,6 +64,27 @@
 <script setup lang="ts">
 </script>
 <style scoped>
+.app-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* 添加水平居中对齐 */
+  padding: 16px 8px; /* 调整左右内边距 */
+  height: 50px;
+  margin: 5px 0; /* 添加上下外边距 */
+}
+
+.logo-image {
+  height: 30px;
+  width: 30px;
+  margin-right: 8px; /* 稍微减小右边距 */
+}
+
+.logo-text {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--el-text-color-primary);
+}
+
 .layout {
     width: 100%;
     height: 100vh;
@@ -67,7 +93,7 @@
 }
 .layout__left {
     background-color: var(--layout-left-bg-color);
-    flex: 0 0 200px;
+    flex: 0 0 180px; /* 从200px改为180px，使侧边栏更窄 */
     display: flex;
     height: 100%;
     width: 100%;

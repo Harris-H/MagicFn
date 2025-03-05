@@ -11,6 +11,7 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
+  --hover-button-bg: #f5f5f5;
 }
 
 a {
@@ -93,5 +94,6 @@ code {
 @media (prefers-color-scheme: dark) {
   :root {
       --layout-left-bg-color: rgb(46, 48, 61); /* 深色主题背景色 */
+      --hover-button-bg: #333; /* 深色主题按钮背景色 */
   }
 }

@@ -1,6 +1,8 @@
 <template>
-    <div>
+    <div class="about-container">
         <h1> {{ $t('about.title') }}</h1>
+                <!-- 所有设置都在一个卡片里 -->
+                <el-card class="settings-card">
         <el-row align="middle" justify="space-around">
           <el-col :span="10">
             <div style="text-align: left;">
@@ -60,6 +62,8 @@
           </el-col>
         </el-row>
         </div>
+        
+        <!-- 版本信息 -->
         <el-row align="middle" justify="space-around" style="margin-top: 10px;">
           <el-col :span="8">
             <div style="text-align: left;">
@@ -68,10 +72,12 @@
           </el-col>
           <el-col :span="16">
             <div style="text-align: right;">
-              <p>v{{ version }}</p>
+              <el-tag size="small">v{{ version }}</el-tag>
+              <!-- <p>v{{ version }}</p> -->
             </div>
           </el-col>
         </el-row>
+      </el-card>
       </div>
 </template>
 
@@ -116,14 +122,26 @@ const openDevTools = () => {
 </script>
 
 <style scoped>
+.about-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.settings-card {
+  border-radius: 8px;
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+}
+
 .hover-button {
   cursor: pointer;
   margin-top: 20px;
   padding-top: 10px; /* 上边距 */
   padding-bottom: 10px; /* 下边距 */
   transition: background-color 0.3s ease;
+  
 }
 .hover-button:hover {
-  background-color: #f5f5f5; /* 灰色背景 */
-}
+  background-color: var(--hover-button-bg);
+}  
 </style>

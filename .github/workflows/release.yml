@@ -16,7 +16,6 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 18
-          cache: 'npm'
 
       - name: Install Dependencies
         run: npm install
@@ -30,8 +29,8 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           files: |
-            release/*.exe
-            release/*.zip
+            dist_electron/*.exe
+            dist_electron/*.zip
           draft: true  # 创建草稿版本，需要手动发布
           generate_release_notes: true  # 自动生成发布说明
         env:

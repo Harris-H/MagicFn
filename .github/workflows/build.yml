@@ -21,7 +21,6 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 18
-          cache: 'npm'  # 缓存npm依赖加速构建
 
       - name: Install Dependencies
         run: npm install
@@ -35,5 +34,5 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: MagicFn-Windows
-          path: release/
+          path: dist_electron/
           retention-days: 7  # 保留时间延长到7天

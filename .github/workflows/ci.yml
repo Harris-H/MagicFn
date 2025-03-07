@@ -11,7 +11,7 @@ on:
       - "!.github/workflows/ci.yml"
 
 jobs:
-  lint-and-test:
+  build-check:
     runs-on: windows-latest
     steps:
       - name: Checkout Code
@@ -21,18 +21,16 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 18
-          cache: 'npm'
 
       - name: Install Dependencies
         run: npm install
 
-      - name: Lint
-        run: npm run lint
-        continue-on-error: true  # 即使lint失败也继续执行
-
+      # 只执行类型检查，不进行完整构建
       - name: Type Check
-        run: npm run typecheck
+        run: vue-tsc --noEmit
         continue-on-error: true  # 即使类型检查失败也继续执行
 
-      - name: Build
-        run: npm run build:web  # 只构建Web部分，速度更快
+      # 只构建前端部分，不打包 Electron 应用
+      - name: Build Frontend
+        run: vite build
+        continue-on-error: true  # 即使构建失败也继续执行

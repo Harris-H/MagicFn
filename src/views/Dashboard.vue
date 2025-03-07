@@ -1,49 +1,65 @@
 <template>
-    <div>
-        <h1>{{ $t('home.modify.title') }}</h1>
-        <el-form ref="FormRef" :model="form" :rules="rules" status-icon label-width="auto" style="max-width: 600px">            
-            <el-form-item :label="$t('home.modify.prefix')" prop="prefix" class="inputItem">
-                <el-input v-model="form.prefix"  :placeholder="$t('home.modify.prefix_placeholder')" clearable></el-input>
-            </el-form-item>
-            <el-form-item :label="$t('home.modify.suffix')" prop="suffix" class="inputItem">
-                 <el-input v-model="form.suffix" :placeholder="$t('home.modify.suffix_placeholder')" clearable></el-input>
-            </el-form-item>
-            <el-form-item :label="$t('home.modify.type')" prop="selectedFileTypes" class="inputItem">
-                <el-select 
-                    v-model="form.selectedFileTypes"
-                    multiple 
-                    :placeholder="$t('home.modify.type_placeholder')" 
-                    placement="right-end"
-                    clearable
-                    allow-create 
-                    filterable 
-                    :reserve-keyword="false"
-                    default-first-option>
-                    <el-option
-                        v-for="item in fileTypeOptions"
-                        :key="item.value"
-                        :label="item.label"
-                        :value="item.value">
-                    </el-option>
-                </el-select>
-            </el-form-item>
-            <el-form-item :label="$t('home.modify.method')" prop="method" class="inputItem">
-            <el-cascader :options="options" v-model="form.method" :show-all-levels="false" :props="props" clearable :placeholder="$t('home.modify.method_ph')"/>   
-            </el-form-item>
-            <!-- <el-form-item v-model="form.method">
-            <el-radio-group v-model="form.method">
-                <el-radio value="file">文件</el-radio>
-                <el-radio value="folder">文件夹</el-radio>
-            </el-radio-group>
-            </el-form-item> -->
-            <el-form-item class="inputItem">
-                <div class="centered-items">
-                <el-button type="primary" id="btn" @click="openFileDialog(FormRef)">{{ $t('button.submit') }}</el-button>
-                <el-button @click="resetForm(FormRef)">{{ $t('button.reset') }}</el-button>
-                <el-button type="success" v-if="isOperationSuccessful" @click="viewResults">{{ $t('home.modify.viewResults') }}</el-button>
-                </div>  
-            </el-form-item>
-        </el-form>
+    <div class="dashboard-container">
+        <h1 class="dashboard-title">{{ $t('home.modify.title') }}</h1>
+        <div class="form-wrapper">
+            <el-form ref="FormRef" :model="form" :rules="rules" status-icon label-width="auto" class="custom-form">            
+                <el-form-item :label="$t('home.modify.prefix')" prop="prefix" class="inputItem">
+                    <el-input v-model="form.prefix" :placeholder="$t('home.modify.prefix_placeholder')" clearable>
+                        <template #prefix><el-icon><i-ep-edit /></el-icon></template>
+                    </el-input>
+                </el-form-item>
+                <el-form-item :label="$t('home.modify.suffix')" prop="suffix" class="inputItem">
+                    <el-input v-model="form.suffix" :placeholder="$t('home.modify.suffix_placeholder')" clearable>
+                        <template #prefix><el-icon><i-ep-edit /></el-icon></template>
+                    </el-input>
+                </el-form-item>
+                <el-form-item :label="$t('home.modify.type')" prop="selectedFileTypes" class="inputItem">
+                    <el-select 
+                        v-model="form.selectedFileTypes"
+                        multiple 
+                        :placeholder="$t('home.modify.type_placeholder')" 
+                        placement="right-end"
+                        clearable
+                        allow-create 
+                        filterable 
+                        :reserve-keyword="false"
+                        default-first-option>
+                        <template #prefix><el-icon><i-ep-files /></el-icon></template>
+                        <el-option
+                            v-for="item in fileTypeOptions"
+                            :key="item.value"
+                            :label="item.label"
+                            :value="item.value">
+                        </el-option>
+                    </el-select>
+                </el-form-item>
+                <el-form-item :label="$t('home.modify.method')" prop="method" class="inputItem">
+                    <el-cascader 
+                        :options="options" 
+                        v-model="form.method" 
+                        :show-all-levels="false" 
+                        :props="props" 
+                        clearable 
+                        :placeholder="$t('home.modify.method_ph')"/>   
+                </el-form-item>
+                <el-form-item class="inputItem button-group">
+                    <div class="centered-items">
+                        <el-button type="primary" id="btn" @click="openFileDialog(FormRef)" class="action-button">
+                            <el-icon><i-ep-upload /></el-icon>
+                            {{ $t('button.submit') }}
+                        </el-button>
+                        <el-button @click="resetForm(FormRef)" class="action-button">
+                            <el-icon><i-ep-refresh /></el-icon>
+                            {{ $t('button.reset') }}
+                        </el-button>
+                        <el-button type="success" v-if="isOperationSuccessful" @click="viewResults" class="action-button">
+                            <el-icon><i-ep-view /></el-icon>
+                            {{ $t('home.modify.viewResults') }}
+                        </el-button>
+                    </div>  
+                </el-form-item>
+            </el-form>
+        </div>
     </div>
 </template>
 
@@ -181,16 +197,130 @@ const resetForm = (formEl: FormInstance | undefined) => {
 </script>
 
 <style scoped>
-.inputItem{
-    width: 350px;
-    margin-top: 20px;
+.dashboard-container {
+  padding: 20px;
+  max-width: 800px;
+  margin: 0 auto;
 }
+
+.dashboard-title {
+  font-size: 28px;
+  font-weight: 600;
+  color: var(--el-text-color-primary);
+  margin-bottom: 30px;
+  position: relative;
+  padding-bottom: 12px;
+  text-align: center;
+}
+
+.dashboard-title::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background: var(--el-color-primary);
+  border-radius: 3px;
+}
+
+.form-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.custom-form {
+  background-color: var(--el-bg-color);
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  width: 100%;
+  max-width: 600px;
+  transition: all 0.3s ease;
+}
+
+.custom-form:hover {
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+}
+
+.inputItem {
+  width: 100%;
+  margin-top: 20px;
+}
+
+.inputItem :deep(.el-form-item__label) {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--el-text-color-primary);
+  padding-right: 15px;
+}
+
+.inputItem :deep(.el-input__wrapper),
+.inputItem :deep(.el-select__wrapper),
+.inputItem :deep(.el-cascader__wrapper) {
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+  padding: 2px 12px;
+  transition: all 0.3s;
+}
+
+.inputItem :deep(.el-input__wrapper:hover),
+.inputItem :deep(.el-select__wrapper:hover),
+.inputItem :deep(.el-cascader__wrapper:hover) {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.inputItem :deep(.el-input__wrapper:focus-within),
+.inputItem :deep(.el-select__wrapper:focus-within),
+.inputItem :deep(.el-cascader__wrapper:focus-within) {
+  box-shadow: 0 0 0 1px var(--el-color-primary) inset;
+}
+
+.inputItem :deep(.el-input__inner),
+.inputItem :deep(.el-select__inner),
+.inputItem :deep(.el-cascader__inner) {
+  font-size: 14px;
+  height: 40px;
+}
+
+.inputItem :deep(.el-input__prefix-inner) {
+  color: var(--el-color-primary);
+  margin-right: 8px;
+}
+
 .centered-items {
   display: flex;
   justify-content: center;
   width: 100%;
+  gap: 15px;
+  margin-top: 10px;
 }
+
+.button-group {
+  margin-top: 35px;
+}
+
+.action-button {
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: 500;
+  transition: all 0.3s;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.action-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
 .el-cascader {
   width: 100%;
+}
+
+.el-form-item {
+  margin-bottom: 25px;
 }
 </style>

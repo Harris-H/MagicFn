@@ -5,23 +5,13 @@ on:
     branches: [main]
     paths-ignore:
       - "**.md"
-      - "**.spec.js"
-      - ".idea"
-      - ".vscode"
-      - ".dockerignore"
-      - "Dockerfile"
-      - ".gitignore"
       - ".github/**"
       - "!.github/workflows/build.yml"
+  workflow_dispatch:  # 允许手动触发
 
 jobs:
   build:
-    runs-on: ${{ matrix.os }}
-
-    strategy:
-      matrix:
-        os: [windows-latest]
-        # os: [macos-latest, ubuntu-latest, windows-latest]
+    runs-on: windows-latest
 
     steps:
       - name: Checkout Code
@@ -31,6 +21,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 18
+          cache: 'npm'  # 缓存npm依赖加速构建
 
       - name: Install Dependencies
         run: npm install
@@ -43,6 +34,6 @@ jobs:
       - name: Upload Artifact
         uses: actions/upload-artifact@v3
         with:
-          name: release_on_${{ matrix. os }}
+          name: MagicFn-Windows
           path: release/
-          retention-days: 5
+          retention-days: 7  # 保留时间延长到7天

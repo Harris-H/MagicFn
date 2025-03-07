@@ -26,22 +26,6 @@
           <span>文件类型</span>
         </div>
         </el-menu-item>
-        <!-- <el-menu-item index="/about">
-          <div class="IconItem">
-          <el-icon><i-ep-home-filled /></el-icon>
-        </div>
-        <div class="MenuItemName">
-          <span>主页</span>
-        </div>
-        </el-menu-item> -->
-        <el-menu-item index="/hello-world">
-          <div class="IconItem">
-          <el-icon><i-ep-menu /></el-icon>
-        </div>
-        <div class="MenuItemName">
-          <span>Hello World</span>
-        </div>
-        </el-menu-item>
         <el-menu-item index="/about">
           <div class="IconItem">
             <el-icon><i-ep-setting /></el-icon>

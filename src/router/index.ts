@@ -1,6 +1,5 @@
 import { createRouter, createWebHashHistory, createWebHistory} from 'vue-router'
 import Home from '../views/Home.vue'
-import HelloWorld from '../views/HelloWorld.vue'
 import Dashboard from '../views/Dashboard.vue'
 import About from '../views/About.vue'
 import Suffix from '../views/Suffix.vue'
@@ -24,11 +23,6 @@ const routes = [
         path: 'about',
         name: 'About',
         component: About, // 默认视图
-      },
-      {
-        path: 'hello-world',
-        name: 'HelloWorld',
-        component: HelloWorld,
       },
     ],
   },

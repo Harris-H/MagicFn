@@ -1,84 +1,136 @@
 <template>
     <div class="about-container">
       <h1 class="settings-title">{{ $t('about.title') }}</h1>
-                <!-- 所有设置都在一个卡片里 -->
-                <el-card class="settings-card">
-        <el-row align="middle" justify="space-around">
-          <el-col :span="10">
-            <div style="text-align: left;">
-              {{ $t('about.themeTittle') }}
-            </div>
-          </el-col>
-          <el-col :span="14">
-            <div style="text-align: right;">
-              <el-radio-group v-model="mode" @change="changeModel">
-                <el-radio-button :label="$t('about.theme.light')" value="light" />
-                <el-radio-button :label="$t('about.theme.dark')" value="dark" />
-                <el-radio-button :label="$t('about.theme.system')" value="system" />
-              </el-radio-group>
-            </div>
-          </el-col>
-        </el-row>
-        <el-row align="middle" justify="space-around" style="margin-top: 20px;">
-          <el-col :span="10">
-            <div style="text-align: left;">
-              {{ $t('about.langTittle') }}
-            </div>
-          </el-col>
-          <el-col :span="14">
-            <div style="text-align: right;">
-              <el-select v-model="language" :placeholder="$t('please-choose')" style="width: 100px;" @change="changeLanguage">
-                <el-option :label="$t('about.lang.zh_CN')" value="zh" />
-                <el-option :label="$t('about.lang.en_US')" value="en" />
-              </el-select>
-            </div>
-          </el-col>
-        </el-row>
-        <div class="hover-button" @click="openDevTools" role="button">
-          <el-row align="middle" justify="space-around">
-            <el-col :span="10">
-              <div style="text-align: left;">
-                {{ $t('about.openDevTools') }} </div>
-            </el-col>
-            <el-col :span="14">
-              <div style="text-align: right;">
-                <el-icon><i-ep-arrow-right-bold/></el-icon>
-              </div>
-            </el-col>
-          </el-row>
+      <el-card class="settings-card">
+        <!-- 主题设置 -->
+        <div class="settings-section">
+          <div class="settings-icon">
+            <el-icon class="icon-circle"><i-ep-moon /></el-icon>
+          </div>
+          <div class="settings-content">
+            <el-row align="middle" justify="space-between">
+              <el-col :span="12">
+                <div class="setting-label">
+                  {{ $t('about.themeTittle') }}
+                </div>
+              </el-col>
+              <el-col :span="12">
+                <div class="setting-control">
+                  <el-radio-group v-model="mode" @change="changeModel" size="large">
+                    <el-radio-button :label="$t('about.theme.light')" value="light">
+                      <el-icon><i-ep-sunny /></el-icon>
+                    </el-radio-button>
+                    <el-radio-button :label="$t('about.theme.dark')" value="dark">
+                      <el-icon><i-ep-moon /></el-icon>
+                    </el-radio-button>
+                    <el-radio-button :label="$t('about.theme.system')" value="system">
+                      <el-icon><i-ep-monitor /></el-icon>
+                    </el-radio-button>
+                  </el-radio-group>
+                </div>
+              </el-col>
+            </el-row>
+          </div>
         </div>
 
-        <div class="hover-button" @click="exitApp" role="button">
-        <el-row align="middle" justify="space-around">
-          <el-col :span="10">
-            <div style="text-align: left;">
-              {{ $t('about.quit') }} 
-            </div>
-          </el-col>
-          <el-col :span="14">
-            <div style="text-align: right;">
-              <el-icon><i-ep-arrow-right-bold/></el-icon>
-            </div>
-          </el-col>
-        </el-row>
+        <!-- 语言设置 -->
+        <div class="settings-section">
+          <div class="settings-icon">
+            <el-icon class="icon-circle"><i-ep-chat-dot-round /></el-icon>
+          </div>
+          <div class="settings-content">
+            <el-row align="middle" justify="space-between">
+              <el-col :span="12">
+                <div class="setting-label">
+                  {{ $t('about.langTittle') }}
+                </div>
+              </el-col>
+              <el-col :span="12">
+                <div class="setting-control">
+                  <el-select v-model="language" :placeholder="$t('please-choose')" style="width: 120px;" @change="changeLanguage" size="large">
+                    <el-option :label="$t('about.lang.zh_CN')" value="zh">
+                      <div class="language-option">
+                        <span class="flag">🇨🇳</span>
+                        <span>{{ $t('about.lang.zh_CN') }}</span>
+                      </div>
+                    </el-option>
+                    <el-option :label="$t('about.lang.en_US')" value="en">
+                      <div class="language-option">
+                        <span class="flag">🇺🇸</span>
+                        <span>{{ $t('about.lang.en_US') }}</span>
+                      </div>
+                    </el-option>
+                  </el-select>
+                </div>
+              </el-col>
+            </el-row>
+          </div>
+        </div>
+
+        <!-- 开发者工具 -->
+        <div class="settings-section action-section" @click="openDevTools" role="button">
+          <div class="settings-icon">
+            <el-icon class="icon-circle"><i-ep-tools /></el-icon>
+          </div>
+          <div class="settings-content">
+            <el-row align="middle" justify="space-between">
+              <el-col :span="18">
+                <div class="setting-label">
+                  {{ $t('about.openDevTools') }}
+                </div>
+              </el-col>
+              <el-col :span="6">
+                <div class="setting-action">
+                  <el-icon><i-ep-arrow-right-bold /></el-icon>
+                </div>
+              </el-col>
+            </el-row>
+          </div>
+        </div>
+
+        <!-- 退出应用 -->
+        <div class="settings-section action-section danger-action" @click="exitApp" role="button">
+          <div class="settings-icon">
+            <el-icon class="icon-circle danger"><i-ep-switch-button /></el-icon>
+          </div>
+          <div class="settings-content">
+            <el-row align="middle" justify="space-between">
+              <el-col :span="18">
+                <div class="setting-label">
+                  {{ $t('about.quit') }}
+                </div>
+              </el-col>
+              <el-col :span="6">
+                <div class="setting-action">
+                  <el-icon><i-ep-arrow-right-bold /></el-icon>
+                </div>
+              </el-col>
+            </el-row>
+          </div>
         </div>
         
         <!-- 版本信息 -->
-        <el-row align="middle" justify="space-around" style="margin-top: 10px;">
-          <el-col :span="8">
-            <div style="text-align: left;">
-              {{ $t('about.version') }}
-            </div>
-          </el-col>
-          <el-col :span="16">
-            <div style="text-align: right;">
-              <el-tag size="small">v{{ version }}</el-tag>
-              <!-- <p>v{{ version }}</p> -->
-            </div>
-          </el-col>
-        </el-row>
+        <div class="settings-section version-section">
+          <div class="settings-icon">
+            <el-icon class="icon-circle"><i-ep-info-filled /></el-icon>
+          </div>
+          <div class="settings-content">
+            <el-row align="middle" justify="space-between">
+              <el-col :span="12">
+                <div class="setting-label">
+                  {{ $t('about.version') }}
+                </div>
+              </el-col>
+              <el-col :span="12">
+                <div class="setting-version">
+                  <el-tag size="large" effect="plain">v{{ version }}</el-tag>
+                </div>
+              </el-col>
+            </el-row>
+          </div>
+        </div>
       </el-card>
-      </div>
+    </div>
 </template>
 
 <script setup lang="ts">
@@ -127,6 +179,7 @@ const openDevTools = () => {
   margin: 0 auto;
   padding: 20px;
 }
+
 .settings-title {
   font-size: 28px;
   font-weight: 600;
@@ -150,19 +203,146 @@ const openDevTools = () => {
 }
 
 .settings-card {
-  border-radius: 8px;
-  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  padding: 10px;
+  transition: all 0.3s ease;
 }
 
-.hover-button {
-  cursor: pointer;
-  margin-top: 20px;
-  padding-top: 10px; /* 上边距 */
-  padding-bottom: 10px; /* 下边距 */
-  transition: background-color 0.3s ease;
-  
+.settings-card:hover {
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
 }
-.hover-button:hover {
-  background-color: var(--hover-button-bg);
-}  
+
+.settings-section {
+  display: flex;
+  align-items: center;
+  padding: 16px;
+  margin: 8px 0;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.settings-icon {
+  margin-right: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.icon-circle {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: var(--el-color-primary-light-9);
+  color: var(--el-color-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  transition: all 0.3s ease;
+}
+
+.icon-circle.danger {
+  background-color: var(--el-color-danger-light-9);
+  color: var(--el-color-danger);
+}
+
+.settings-content {
+  flex: 1;
+  width: 100%;
+}
+
+.setting-label {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--el-text-color-primary);
+  text-align: left;
+  letter-spacing: 0.3px;
+  line-height: 1.5;
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 40px;
+}
+
+.setting-control {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  height: 40px;
+}
+
+.setting-action {
+  display: flex;
+  justify-content: flex-end;
+  color: var(--el-text-color-secondary);
+}
+
+.setting-version {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.action-section {
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.action-section:hover {
+  background-color: var(--el-fill-color-light);
+}
+
+.action-section:hover .icon-circle {
+  transform: scale(1.1);
+}
+
+.danger-action:hover {
+  background-color: var(--el-color-danger-light-9);
+}
+
+.danger-action:hover .icon-circle.danger {
+  background-color: var(--el-color-danger-light-7);
+}
+
+.version-section {
+  margin-top: 16px;
+  border-top: 1px solid var(--el-border-color-lighter);
+  padding-top: 20px;
+}
+
+.language-option {
+  display: flex;
+  align-items: center;
+}
+
+.flag {
+  margin-right: 8px;
+  font-size: 18px;
+}
+
+/* 自定义 radio button 样式 */
+:deep(.el-radio-button__inner) {
+  padding: 8px 16px;
+}
+
+:deep(.el-radio-button__original-radio:checked + .el-radio-button__inner) {
+  box-shadow: -1px 0 0 0 var(--el-color-primary);
+}
+
+:deep(.el-select__wrapper) {
+  border-radius: 8px;
+}
+
+:deep(.el-tag) {
+  font-weight: 500;
+  padding: 0 12px;
+  height: 32px;
+  line-height: 30px;
+}
+
+/* 确保所有行的高度一致 */
+.el-row {
+  min-height: 40px;
+}
 </style>

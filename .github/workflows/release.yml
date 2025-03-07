@@ -24,9 +24,26 @@ on:
 jobs:
   release:
     runs-on: windows-latest
+    permissions:
+      contents: write # 添加写入权限
+      
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
+
+      # 设置版本号环境变量
+      - name: Set Version
+        shell: pwsh
+        run: |
+          $version = if ("${{ github.event_name }}" -eq "workflow_dispatch") {
+            "${{ inputs.version }}"
+          } else {
+            "${{ github.ref_name }}"
+          }
+          # 移除版本号中的 'v' 前缀
+          $version = $version -replace '^v',''
+          echo "VERSION=$version" >> $env:GITHUB_ENV
+          echo "Version set to: $version"
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -41,12 +58,20 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+      # 添加文件检查步骤
+      - name: List Build Files
+        shell: pwsh
+        run: |
+          echo "Checking release directory:"
+          echo "Version is: ${{ env.VERSION }}"
+          dir "release/${{ env.VERSION }}"
+
       - name: Create Release
         uses: softprops/action-gh-release@v1
         with:
           files: |
-            dist_electron/*.exe
-            dist_electron/*.zip
+            release/${{ env.VERSION }}/*.exe
+            release/${{ env.VERSION }}/*.zip
           draft: ${{ inputs.draft || true }}
           prerelease: ${{ inputs.prerelease || false }}
           tag_name: ${{ inputs.version || github.ref_name }}

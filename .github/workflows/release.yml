@@ -3,17 +3,33 @@ name: Release
 on:
   push:
     tags:
-      - 'v*'  # 推送标签时触发，如 v1.0.0
+      - 'v*'  # 推送标签时触发
+  workflow_dispatch:  # 添加手动触发支持
+    inputs:
+      version:
+        description: '版本号 (例如: v0.0.6)'
+        required: true
+        type: string
+      draft:
+        description: '是否为草稿版本'
+        required: true
+        type: boolean
+        default: true
+      prerelease:
+        description: '是否为预发布版本'
+        required: true
+        type: boolean
+        default: false
 
 jobs:
   release:
     runs-on: windows-latest
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Setup Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: 18
 
@@ -31,7 +47,9 @@ jobs:
           files: |
             dist_electron/*.exe
             dist_electron/*.zip
-          draft: true  # 创建草稿版本，需要手动发布
-          generate_release_notes: true  # 自动生成发布说明
+          draft: ${{ inputs.draft || true }}
+          prerelease: ${{ inputs.prerelease || false }}
+          tag_name: ${{ inputs.version || github.ref_name }}
+          generate_release_notes: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 

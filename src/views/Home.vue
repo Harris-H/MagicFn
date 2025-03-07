@@ -5,7 +5,7 @@
             <!-- 添加 Logo 区域 -->
             <div class="app-logo">
         <img src="/icon.svg" alt="Logo" class="logo-image">
-        <span class="logo-text">File Helper</span>
+        <span class="logo-text">MagicFn</span>
       </div>
     <el-aside class="the-menu">
       <el-menu
@@ -67,22 +67,30 @@
 .app-logo {
   display: flex;
   align-items: center;
-  justify-content: center; /* 添加水平居中对齐 */
-  padding: 16px 8px; /* 调整左右内边距 */
+  justify-content: center;
+  padding: 16px 8px;
   height: 50px;
-  margin: 5px 0; /* 添加上下外边距 */
+  margin: 5px 0;
+  position: relative;
+  border-bottom: 1px solid var(--el-border-color-lighter);
 }
 
 .logo-image {
-  height: 30px;
-  width: 30px;
-  margin-right: 8px; /* 稍微减小右边距 */
+  height: 32px;
+  width: 32px;
+  margin-right: 8px;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
 }
 
 .logo-text {
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 600;
-  color: var(--el-text-color-primary);
+  color: var(--el-color-primary);
+  letter-spacing: 0.5px;
+  background: linear-gradient(90deg, var(--el-color-primary), var(--el-color-primary-light-3));
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
 }
 
 .layout {
@@ -93,7 +101,7 @@
 }
 .layout__left {
     background-color: var(--layout-left-bg-color);
-    flex: 0 0 180px; /* 从200px改为180px，使侧边栏更窄 */
+    flex: 0 0 180px;
     display: flex;
     height: 100%;
     width: 100%;
@@ -107,10 +115,20 @@
     -ms-user-select: none;
     overflow: hidden;
     border-right: 1px solid var(--divider-color);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
 }
 .el-menu {
   background-color: inherit;
   border-right: none;
+  padding-top: 8px;
+}
+.el-menu-item.is-active {
+  background-color: var(--el-color-primary-light-9) !important;
+  color: var(--el-color-primary) !important;
+}
+
+.el-menu-item:hover {
+  background-color: var(--el-fill-color-light) !important;
 }
 .layout__left .the-menu {
     width: 100%;
@@ -123,7 +141,8 @@
   width: 100%;
 }
 .main-content {
-  flex: 4; /* 主内容区域占据3份 */
+  flex: 4;
+  padding: 20px;
 }
 .IconItem{
   min-width: 56px;
@@ -133,10 +152,10 @@
   margin-left: 6px;
 }
 .MenuItemName{
-  margin-left: -35px;
+  margin-left: -20px;
   flex: 1 1 auto;
   text-align: center;
-  font-weight: 700;
+  font-weight: 500;
   line-height: 1.5;
   font-size: 16px; /* 调整字体大小为16px */
 }

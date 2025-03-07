@@ -1,6 +1,6 @@
 <template>
     <div class="about-container">
-        <h1> {{ $t('about.title') }}</h1>
+      <h1 class="settings-title">{{ $t('about.title') }}</h1>
                 <!-- 所有设置都在一个卡片里 -->
                 <el-card class="settings-card">
         <el-row align="middle" justify="space-around">
@@ -126,6 +126,27 @@ const openDevTools = () => {
   max-width: 600px;
   margin: 0 auto;
   padding: 20px;
+}
+.settings-title {
+  font-size: 28px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: var(--el-text-color-primary);
+  text-align: center;
+  position: relative;
+  padding-bottom: 12px;
+}
+
+.settings-title::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background: var(--el-color-primary);
+  border-radius: 3px;
 }
 
 .settings-card {
